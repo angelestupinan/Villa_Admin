@@ -93,7 +93,7 @@ namespace VillaAPI.Controllers
             return CreatedAtRoute("GetVilla", new { id = villa.Id, nombre = villa.Nombre });
         }
 
-        [HttpDelete("id")]
+        [HttpDelete("{id:int}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
