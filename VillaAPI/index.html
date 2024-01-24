@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <button onclick="Send();">SEND GET PETITION</button>
+
+    <script>
+    function succes(){
+        var data = JSON.parse(this.responseText);
+        console.log(data);
+    }
+
+    function error(){
+        console.log("WE GOT A PROBLEM HEREE")
+    }
+
+    function Send(){
+        var x = new XMLHttpRequest();
+       x.onload = succes;
+       x.onerror = error;
+
+       x.open("GET", "https://localhost:7037/api/Villa/id?id=2");
+       x.send();
+    }
+    </script>
+
+</body>
+</html>
