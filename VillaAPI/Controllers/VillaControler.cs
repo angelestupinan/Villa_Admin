@@ -6,6 +6,7 @@ using VillaAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using VillaAPI.Repos.IRepo;
+using Microsoft.Extensions.Logging;
 
 namespace VillaAPI.Controllers
 {
@@ -68,13 +69,13 @@ namespace VillaAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (await _villaRepo.GettAll(v => v.Nombre.ToUpper() == createDto.Nombre.ToUpper()) != null)
+            if (await _villaRepo.GetOne(v => v.Nombre.ToUpper() == createDto.Nombre.ToUpper()) != null)
             {
                 ModelState.AddModelError("ElNombreYaExiste", "la villa con ese nombre ya existe");
 
                 return BadRequest(ModelState);
             }
-
+           
             if (createDto == null)
             {
                 return BadRequest(createDto);
