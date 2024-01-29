@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using VillaAPI.Data;
 using VillaAPI;
+using VillaAPI.Repos.IRepo;
+using VillaAPI.Repos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddAutoMapper(typeof(MappingConfig));
+
+builder.Services.AddScoped<IVillaRepositorio, VillaRepositorio>();
 
 var app = builder.Build();
 
